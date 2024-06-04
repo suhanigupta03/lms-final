@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(initializeForm, 4000); 
+  // setTimeout(initializeForm, 4000); 
+  createFormButton(); 
 });
 
 function initializeForm() {
@@ -47,8 +48,15 @@ function initializeForm() {
   console.log(path.includes(currentPath));
 }
 
-
-
+function createFormButton() {
+  const button = document.createElement('button');
+  button.textContent = 'Open Form';
+  button.addEventListener('click', () => {
+      initializeForm();
+      button.style.display = 'none'; 
+  });
+  document.body.appendChild(button);
+}
 function createForm(courseOptions, styles, logo, contact) {
     // const form = document.createElement('form');
     // form.id = 'studentDetailsForm';
@@ -153,17 +161,17 @@ logoAndContactContainer.appendChild(contactElement);
     header.id = 'header';
     document.body.insertBefore(header, document.body.firstChild);
 
-    // Create and style logo
+    
     const logoElement = document.createElement('img');
-    logoElement.src = logo; // replace 'logo.png' with the actual path to your logo image
+    logoElement.src = logo; 
     logoElement.alt = 'Company Logo';
-    logoElement.classList.add('logo-style'); // add appropriate styles to logo
+    logoElement.classList.add('logo-style'); 
     header.appendChild(logoElement);
 
-    // Create and style contact number
+  
     const contactElement = document.createElement('div');
-    contactElement.textContent = 'Contact us: ' + contact; // replace with your contact number
-    contactElement.classList.add('contact-style'); // add appropriate styles to contact number
+    contactElement.textContent = 'Contact us: ' + contact; 
+    contactElement.classList.add('contact-style'); 
     header.appendChild(contactElement);
 }
 //   function createField(form, field) {
@@ -243,12 +251,12 @@ function createField(form, field) {
   }
   function createCheckboxField(form, labelText, checkboxId) {
     const wrapper = document.createElement('div');
-    wrapper.className = 'form-group checkbox-group'; // Add the checkbox-group class
+    wrapper.className = 'form-group checkbox-group'; 
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.id = checkboxId;
-    checkbox.classList.add('checkbox-input'); // Add the checkbox-input class
+    checkbox.classList.add('checkbox-input'); 
 
     const label = document.createElement('label');
     label.textContent = labelText;
