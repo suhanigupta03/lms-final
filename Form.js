@@ -47,30 +47,22 @@ function initializeForm() {
   console.log(path.includes(currentPath));
 }
 
-// function createOverlay() {
-//   const overlay = document.createElement('div');
-//   overlay.classList.add('overlay');
-//   document.body.appendChild(overlay);
-// }
- 
+
 
 function createForm(courseOptions, styles, logo, contact) {
     // const form = document.createElement('form');
     // form.id = 'studentDetailsForm';
     // document.body.appendChild(form);
-    const overlay = document.createElement('div');
-    overlay.classList.add('overlay');
-    document.body.appendChild(overlay);
+    // const overlay = document.createElement('div');
+    // overlay.classList.add('overlay');
+    // document.body.appendChild(overlay);
     const formContainer = document.createElement('div');
     formContainer.id = 'formContainer';
     // formContainer.classList.add(styles);
     formContainer.classList.add('form-container'); // Add a class for styling
     // formContainer.style.backgroundColor = 'blue';
     document.body.appendChild(formContainer);
-    // const overlay = document.createElement('div');
-    // overlay.classList.add('overlay');
-    // document.body.appendChild(overlay);
-
+    
     const header = document.createElement('div');
 header.classList.add('formWrapper');
 formContainer.insertBefore(header, formContainer.firstChild);
