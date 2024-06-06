@@ -1,13 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // setTimeout(initializeForm, 4000); 
-  createFormButton(); 
+  setTimeout(initializeForm, 4000); 
+  // createFormButton(); 
+  // initializeForm();
 });
 
 function initializeForm() {
-  const scriptElement = document.querySelector('script[src="Form.js"]');
+  const scriptElement = document.querySelector('script[src="https://suhanigupta03.github.io/lms-final/"]');
 
   if (!scriptElement) {
-      console.error('Script element with src="Form.js" not found.');
+      console.error('Script element with src="https://suhanigupta03.github.io/lms-final/" not found.');
       return;
   }
 
