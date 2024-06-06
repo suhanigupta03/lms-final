@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
     openModal();
   }, 4000);
   // createFormButton();
-  // createModal(); 
+  createModal(); 
   // BasicinitializeForm();
   injectStyles(); 
   
