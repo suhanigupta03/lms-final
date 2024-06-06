@@ -387,10 +387,10 @@ function initializeForm() {
 
   modalContent.appendChild(closeButton);
 
-  const scriptElement = document.querySelector('script[src="Form.js"]');
+  const scriptElement = document.querySelector('script[src="https://suhanigupta03.github.io/lms-final/Form.js"]');
 
   if (!scriptElement) {
-    console.error('Script element with src="Form.js" not found.');
+    console.error('Script element with src="https://suhanigupta03.github.io/lms-final/Form.js" not found.');
     return;
   }
 
@@ -615,10 +615,10 @@ function submitForm(event) {
 function BasicinitializeForm() {
   console.log('initializeForm called');
 
-  const scriptElement = document.querySelector('script[src="Form.js"]');
+  const scriptElement = document.querySelector('script[src="https://suhanigupta03.github.io/lms-final/Form.js"]');
 
   if (!scriptElement) {
-    console.error('Script element with src="Form.js" not found.');
+    console.error('Script element with src="https://suhanigupta03.github.io/lms-final/Form.js" not found.');
     return;
   }
 
