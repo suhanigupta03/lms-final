@@ -322,9 +322,9 @@ document.addEventListener('DOMContentLoaded', () => {
   //   initializeForm();
   //   openModal();
   // }, 4000);
-  createFormButton();
-  createModal(); 
-  // BasicinitializeForm();
+  // createFormButton();
+  // createModal(); 
+  BasicinitializeForm();
   injectStyles(); 
   
   console.log('DOMContentLoaded event fired');
