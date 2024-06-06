@@ -10,7 +10,7 @@ function initializeForm() {
   const scriptElement = document.querySelector('script[src="https://suhanigupta03.github.io/lms-final/Form.js"]');
 
   if (!scriptElement) {
-      console.error('Script element with src="https://suhanigupta03.github.io/lms-final/Form.js" not found.');
+      console.error('Script element with src="Form.js" not found.');
       return;
   }
 
