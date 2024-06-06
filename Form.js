@@ -324,15 +324,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // }, 4000);
   createFormButton();
   createModal(); 
-  // initializeForm();
-  
+  // BasicinitializeForm();
   injectStyles(); 
   
   console.log('DOMContentLoaded event fired');
 });
-
+ 
 function injectStyles() {
-  // Check if style.css is already present
+ 
   if (!document.querySelector('link[href="style.css"]')) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -376,7 +375,7 @@ function initializeForm() {
   console.log('initializeForm called');
   const modalContent = document.getElementById('modalContent');
 
-  // Clear previous content
+  
   modalContent.innerHTML = '';
 
   // Close button
@@ -420,12 +419,12 @@ function initializeForm() {
 
   try {
     if (JSON.parse(path).includes(currentPath)) {
-      console.log('Path matches, creating form'); // Debugging log
+      console.log('Path matches, creating form'); 
       createForm(courses, styles, logo, contact);
       toggleFormStyle(styles);
-      openModal(); // Open modal when form is initialized
+      openModal(); 
     } else {
-      console.log('Path does not match'); // Debugging log
+      console.log('Path does not match');
     }
   } catch (e) {
     console.error('Error parsing path attribute:', e);
@@ -447,8 +446,7 @@ function createForm(courseOptions, styles, logo, contact) {
   const formContainer = document.createElement('div');
   formContainer.id = 'formContainer';
   formContainer.classList.add('form-container');
-  document.getElementById('modalContent').appendChild(formContainer); // Append form to modal content
-
+  document.getElementById('modalContent').appendChild(formContainer); 
   const header = document.createElement('div');
   header.classList.add('formWrapper');
   formContainer.insertBefore(header, formContainer.firstChild);
@@ -612,4 +610,113 @@ function submitForm(event) {
 
   console.log('Form submitted:', formData);
   closeModal();
+}
+
+function BasicinitializeForm() {
+  console.log('initializeForm called');
+
+  const scriptElement = document.querySelector('script[src="Form.js"]');
+
+  if (!scriptElement) {
+    console.error('Script element with src="Form.js" not found.');
+    return;
+  }
+
+  const path = scriptElement.getAttribute('path');
+  const courses = scriptElement.getAttribute('courses');
+  const styles = scriptElement.getAttribute('styles');
+  const logo = scriptElement.getAttribute('logo');
+  const contact = scriptElement.getAttribute('contact');
+  const customStylesheets = scriptElement.getAttribute('customStylesheets');
+
+  if (!path || !courses) {
+    console.error('Custom data attribute not found in script element.');
+    return;
+  }
+
+  const currentPath = window.location.pathname;
+  console.log('Current path:', currentPath);
+
+  try {
+    if (JSON.parse(path).includes(currentPath)) {
+      console.log('Path matches, creating form'); 
+      BasiccreateForm(courses, styles, logo, contact);
+      toggleFormStyle(styles);
+    } else {
+      console.log('Path does not match');
+    }
+  } catch (e) {
+    console.error('Error parsing path attribute:', e);
+  }
+}
+
+function BasiccreateForm(courseOptions, styles, logo, contact) {
+  const formContainer = document.createElement('div');
+  formContainer.id = 'formContainer';
+  formContainer.classList.add('form-container');
+  document.body.appendChild(formContainer); // Append directly to body
+  
+  const header = document.createElement('div');
+  header.classList.add('formWrapper');
+  formContainer.appendChild(header); // Append directly to formContainer
+  
+  const logoAndContactContainer = document.createElement('div');
+  logoAndContactContainer.classList.add('logo-contact-container');
+  header.appendChild(logoAndContactContainer);
+
+  const logoElement = document.createElement('img');
+  logoElement.src = logo || 'Careerkick.png';
+  logoElement.alt = 'Company Logo';
+  logoElement.classList.add('logo-style');
+  logoAndContactContainer.appendChild(logoElement);
+
+  const contactElement = document.createElement('div');
+  contactElement.textContent = 'Contact us: ' + contact;
+  contactElement.classList.add('contact-style');
+  logoAndContactContainer.appendChild(contactElement);
+
+  const form = document.createElement('form');
+  form.id = 'studentDetailsForm';
+  form.classList.add('formWrapper');
+  formContainer.appendChild(form);
+
+  const fieldOptions = [
+    { placeholder: "Student's Name:", inputType: 'text', inputId: 'studentName', inputName: 'studentName', required: true },
+    { placeholder: "Father's Name:", inputType: 'text', inputId: 'fatherName', inputName: 'fatherName', required: true },
+    { placeholder: 'Contact No.:', inputType: 'tel', inputId: 'contactNo', inputName: 'contactNo', required: true },
+    { placeholder: 'E-mail:', inputType: 'email', inputId: 'email', inputName: 'email', required: true },
+    { placeholder: 'Whatsapp No.:', inputType: 'tel', inputId: 'whatsappNo', inputName: 'whatsappNo', required: false },
+    { placeholder: 'District:', inputType: 'text', inputId: 'city', inputName: 'city', required: false },
+    { placeholder: 'State:', inputType: 'text', inputId: 'state', inputName: 'state', required: false },
+    { placeholder: 'NEET Score:', inputType: 'number', inputId: 'neetScore', inputName: 'neetScore', required: true },
+    { placeholder: 'NEET AIR:', inputType: 'number', inputId: 'neetAir', inputName: 'neetAir', required: true },
+  ];
+
+  fieldOptions.forEach(option => {
+    createField(form, option);
+  });
+
+  const courseSelectWrapper = document.createElement('div');
+  courseSelectWrapper.className = 'form-group full-width';
+  form.appendChild(courseSelectWrapper);
+
+  createSelectField(courseSelectWrapper, '', 'courseSelection', 'courseSelection', courseOptions);
+
+  if (window.location.hostname === 'abhigyadufare.github.io') {
+    createField(form, { placeholder: 'Preferred College:', inputType: 'text', inputId: 'preferredCollege', inputName: 'preferredCollege', required: true });
+  }
+
+  createCheckboxField(form, 'I agree to receive information by signing up on Careerkick services', 'agreeCheckbox');
+
+  const buttonContainer = document.createElement('div');
+  buttonContainer.className = 'button-container';
+  form.appendChild(buttonContainer);
+
+  const submitButton = document.createElement('button');
+  submitButton.type = 'submit';
+  submitButton.textContent = 'Submit';
+  submitButton.className = 'submit-button';
+  form.appendChild(submitButton);
+
+  form.addEventListener('submit', submitForm);
 }
