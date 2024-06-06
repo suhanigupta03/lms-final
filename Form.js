@@ -318,12 +318,12 @@
 //   }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // setTimeout(() => {
-  //   initializeForm();
-  //   openModal();
-  // }, 4000);
-  createFormButton();
-  createModal(); 
+  setTimeout(() => {
+    initializeForm();
+    openModal();
+  }, 4000);
+  // createFormButton();
+  // createModal(); 
   // BasicinitializeForm();
   injectStyles(); 
   
