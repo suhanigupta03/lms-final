@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // setTimeout(initializeForm, 4000); 
   createFormButton(); 
+   console.log('DOMContentLoaded event fired');
   // initializeForm();
 });
 
