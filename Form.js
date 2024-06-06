@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initializeForm() {
+    console.log('initializeForm called');
   const scriptElement = document.querySelector('script[src="https://suhanigupta03.github.io/lms-final/"]');
 
   if (!scriptElement) {
@@ -39,21 +40,25 @@ function initializeForm() {
   }
 
   const currentPath = window.location.pathname;
-
-  if (JSON.parse(path).includes(currentPath)) {
-      createForm(courses, styles, logo, contact);
-      toggleFormStyle(styles);
+console.log('Current path:', currentPath);
+  try {
+      if (JSON.parse(path).includes(currentPath)) {
+          console.log('Path matches, creating form'); // Debugging log
+          createForm(courses, styles, logo, contact);
+          toggleFormStyle(styles);
+      } else {
+          console.log('Path does not match'); // Debugging log
+      }
+  } catch (e) {
+      console.error('Error parsing path attribute:', e);
   }
-
-  console.log(path);
-  console.log(courses);
-  console.log(path.includes(currentPath));
 }
 
 function createFormButton() {
   const button = document.createElement('button');
   button.textContent = 'Open Form';
   button.addEventListener('click', () => {
+       console.log('Form button clicked');
       initializeForm();
       button.style.display = 'none'; 
   });
