@@ -450,7 +450,7 @@ function createForm(courseOptions, styles, logo, contact) {
   header.appendChild(logoAndContactContainer);
 
   const logoElement = document.createElement('img');
-  logoElement.src = logo || 'Careerkick.png';
+  logoElement.src = logo || 'https://suhanigupta03.github.io/lms-final/Careerkick.png';
   logoElement.alt = 'Company Logo';
   logoElement.classList.add('logo-style');
   logoAndContactContainer.appendChild(logoElement);
@@ -674,7 +674,7 @@ function BasiccreateForm(courseOptions, styles, logo, contact) {
   header.appendChild(logoAndContactContainer);
 
   const logoElement = document.createElement('img');
-  logoElement.src = logo || 'Careerkick.png';
+  logoElement.src = logo || 'https://suhanigupta03.github.io/lms-final/Careerkick.png';
   logoElement.alt = 'Company Logo';
   logoElement.classList.add('logo-style');
   logoAndContactContainer.appendChild(logoElement);
