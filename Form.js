@@ -322,10 +322,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeForm();
     openModal();
   }, 4000);
-  setTimeout(() => {
-    initializeForm();
-    openModal();
-  }, 4000);
   // createFormButton();
   createModal(); 
   // BasicinitializeForm();
