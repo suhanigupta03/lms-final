@@ -318,28 +318,18 @@
 //   }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // setTimeout(() => {
-  //   initializeForm();
-  //   openModal();
-  // }, 4000);
+  setTimeout(() => {
+    initializeForm();
+    openModal();
+  }, 4000);
   // createFormButton();
-  // createModal(); 
-  BasicinitializeForm();
-  injectStyles(); 
+  createModal(); 
+  // BasicinitializeForm();
+  
   
   console.log('DOMContentLoaded event fired');
 });
  
-function injectStyles() {
- 
-  if (!document.querySelector('link[href="style.css"]')) {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'style.css';
-    document.head.appendChild(link);
-  }
-}
-
 function createModal() {
   const modalOverlay = document.createElement('div');
   modalOverlay.id = 'modalOverlay';
@@ -402,12 +392,19 @@ function initializeForm() {
   const customStylesheets = scriptElement.getAttribute('customStylesheets');
 
   if (styles) {
-    const customStylesheet = document.querySelectorAll('link[rel="stylesheet"]');
-    const styleLink = document.createElement('link');
-    styleLink.rel = 'stylesheet';
-    styleLink.href = customStylesheet.length > 0 ? "testStyle.css" : "style.css";
-    document.head.prepend(styleLink);
-  }
+          const customStylesheet = document.querySelectorAll('link[rel="stylesheet"]');
+          if (customStylesheet > 0) {
+              const styleLink = document.createElement('link');
+              styleLink.rel = 'stylesheet';
+              styleLink.href = "testStyle.css";
+              document.head.prepend(styleLink);
+          } else {
+              const styleLink = document.createElement('link');
+              styleLink.rel = 'stylesheet';
+              styleLink.href = "style.css";
+              document.head.prepend(styleLink);
+          }
+      }
 
   if (!path || !courses) {
     console.error('Custom data attribute not found in script element.');
@@ -628,6 +625,20 @@ function BasicinitializeForm() {
   const logo = scriptElement.getAttribute('logo');
   const contact = scriptElement.getAttribute('contact');
   const customStylesheets = scriptElement.getAttribute('customStylesheets');
+  if (styles) {
+          const customStylesheet = document.querySelectorAll('link[rel="stylesheet"]');
+          if (customStylesheet > 0) {
+              const styleLink = document.createElement('link');
+              styleLink.rel = 'stylesheet';
+              styleLink.href = "testStyle.css";
+              document.head.prepend(styleLink);
+          } else {
+              const styleLink = document.createElement('link');
+              styleLink.rel = 'stylesheet';
+              styleLink.href = "style.css";
+              document.head.prepend(styleLink);
+          }
+      }
 
   if (!path || !courses) {
     console.error('Custom data attribute not found in script element.');
