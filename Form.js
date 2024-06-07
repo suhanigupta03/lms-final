@@ -451,6 +451,7 @@ function createForm(courseOptions, styles, logo, contact) {
 
   const logoElement = document.createElement('img');
   logoElement.src = logo || 'https://suhanigupta03.github.io/lms-final/Careerkick.png';
+  console.log("careerkick logo");
   logoElement.alt = 'Company Logo';
   logoElement.classList.add('logo-style');
   logoAndContactContainer.appendChild(logoElement);
@@ -675,6 +676,7 @@ function BasiccreateForm(courseOptions, styles, logo, contact) {
 
   const logoElement = document.createElement('img');
   logoElement.src = logo || 'https://suhanigupta03.github.io/lms-final/Careerkick.png';
+  console.log("careerkick logo");
   logoElement.alt = 'Company Logo';
   logoElement.classList.add('logo-style');
   logoAndContactContainer.appendChild(logoElement);
