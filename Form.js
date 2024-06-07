@@ -318,15 +318,13 @@
 //   }
 
 document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    initializeForm();
-    openModal();
+  setTimeout(() => {                                   
+    initializeForm();                       
+    openModal();                  
   }, 4000);
   // createFormButton();
   createModal(); 
   // BasicinitializeForm();
-  
-  
   console.log('DOMContentLoaded event fired');
 });
  
@@ -396,12 +394,12 @@ function initializeForm() {
           if (customStylesheet > 0) {
               const styleLink = document.createElement('link');
               styleLink.rel = 'stylesheet';
-              styleLink.href = "testStyle.css";
+              styleLink.href = "https://suhanigupta03.github.io/lms-final/testStyle.css";
               document.head.prepend(styleLink);
           } else {
               const styleLink = document.createElement('link');
               styleLink.rel = 'stylesheet';
-              styleLink.href = "style.css";
+              styleLink.href = "https://suhanigupta03.github.io/lms-final/style.css";
               document.head.prepend(styleLink);
           }
       }
@@ -630,12 +628,12 @@ function BasicinitializeForm() {
           if (customStylesheet > 0) {
               const styleLink = document.createElement('link');
               styleLink.rel = 'stylesheet';
-              styleLink.href = "testStyle.css";
+              styleLink.href = "https://suhanigupta03.github.io/lms-final/testStyle.css";
               document.head.prepend(styleLink);
           } else {
               const styleLink = document.createElement('link');
               styleLink.rel = 'stylesheet';
-              styleLink.href = "style.css";
+              styleLink.href = "https://suhanigupta03.github.io/lms-final/style.css";
               document.head.prepend(styleLink);
           }
       }
@@ -665,11 +663,11 @@ function BasiccreateForm(courseOptions, styles, logo, contact) {
   const formContainer = document.createElement('div');
   formContainer.id = 'formContainer';
   formContainer.classList.add('form-container');
-  document.body.appendChild(formContainer); // Append directly to body
+  document.body.appendChild(formContainer); 
   
   const header = document.createElement('div');
   header.classList.add('formWrapper');
-  formContainer.appendChild(header); // Append directly to formContainer
+  formContainer.appendChild(header); 
   
   const logoAndContactContainer = document.createElement('div');
   logoAndContactContainer.classList.add('logo-contact-container');
