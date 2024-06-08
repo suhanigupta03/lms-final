@@ -318,13 +318,22 @@
 //   }
 
 document.addEventListener('DOMContentLoaded', () => {
+  const pattern = scriptElement.getAttribute('pattern');
+  if(pattern==='popup')
+    {
   setTimeout(() => {                                   
     initializeForm();                       
     openModal();                  
   }, 4000);
-  // createFormButton();
   createModal(); 
-  // BasicinitializeForm();
+}
+if(pattern==='button-modal')
+  {
+  createFormButton();
+  createModal(); 
+  }
+  else
+  BasicinitializeForm();
   console.log('DOMContentLoaded event fired');
 });
  
