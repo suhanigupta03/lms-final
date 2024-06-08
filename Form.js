@@ -318,6 +318,7 @@
 //   }
 
 document.addEventListener('DOMContentLoaded', () => {
+  const scriptElement = document.querySelector('script[src="https://suhanigupta03.github.io/lms-final/Form.js"]');
   const pattern = scriptElement.getAttribute('pattern');
   if(pattern==='popup')
     {
@@ -332,8 +333,10 @@ if(pattern==='button-modal')
   createFormButton();
   createModal(); 
   }
-  else
+  if(pattern==='basic')
+    {
   BasicinitializeForm();
+    }
   console.log('DOMContentLoaded event fired');
 });
  
