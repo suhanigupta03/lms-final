@@ -500,7 +500,7 @@ function createForm(courseOptions, styles, logo, contact) {
 
   createSelectField(courseSelectWrapper, '', 'courseSelection', 'courseSelection', courseOptions);
 
-  if (window.location.hostname === 'abhigyadufare.github.io') {
+  if (window.location.hostname === 'https://suhanigupta03.github.io/lms-final/') {
     createField(form, { placeholder: 'Preferred College:', inputType: 'text', inputId: 'preferredCollege', inputName: 'preferredCollege', required: true });
   }
 
