@@ -428,9 +428,10 @@ function initializeForm() {
     if (JSON.parse(path).includes(currentPath)) {
       console.log('Path matches, creating form'); 
       const specificContainerId = 'form_container_NT';
-      console.log("form_container_NT found");
+      // console.log("form_container_NT found");
       const specificContainer = document.getElementById(specificContainerId);
       if (specificContainer) {
+        console.log("form_container_NT found");
         renderFormInSpecificContainer(specificContainer, courses, styles, logo, contact);
         toggleFormStyle(styles);
       } 
@@ -736,9 +737,10 @@ function BasicinitializeForm() {
     if (JSON.parse(path).includes(currentPath)) {
       console.log('Path matches, creating form'); 
       const specificContainerId = 'form_container_NT';
-      console.log("form_container_NT found");
+     
       const specificContainer = document.getElementById(specificContainerId);
       if (specificContainer) {
+        console.log("form_container_NT found");
         renderFormInSpecificContainer(specificContainer, courses, styles, logo, contact);
         toggleFormStyle(styles);
       } 
