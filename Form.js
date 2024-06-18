@@ -432,10 +432,12 @@ function initializeForm() {
       const specificContainer = document.getElementById(specificContainerId);
       if (specificContainer) {
         renderFormInSpecificContainer(specificContainer, courses, styles, logo, contact);
-      } else {
-        createForm(courses, styles, logo, contact);
         toggleFormStyle(styles);
-      }
+      } 
+      // else {
+      //   createForm(courses, styles, logo, contact);
+      //   toggleFormStyle(styles);
+      // }
       openModal(); 
     } else {
       console.log('Path does not match');
@@ -738,10 +740,12 @@ function BasicinitializeForm() {
       const specificContainer = document.getElementById(specificContainerId);
       if (specificContainer) {
         renderFormInSpecificContainer(specificContainer, courses, styles, logo, contact);
-      } else {
-        createForm(courses, styles, logo, contact);
         toggleFormStyle(styles);
-      }
+      } 
+      // else {
+      //   createForm(courses, styles, logo, contact);
+      //   toggleFormStyle(styles);
+      // }
       openModal(); 
     } else {
       console.log('Path does not match');
