@@ -320,36 +320,33 @@
 document.addEventListener('DOMContentLoaded', () => {
   const scriptElement = document.querySelector('script[src="https://suhanigupta03.github.io/lms-final/Form.js"]');
   const pattern = scriptElement.getAttribute('pattern');
-  
-  if (pattern === 'popup') {
-    setTimeout(() => {
-      initializeForm();
-      openModal();
-    }, 4000);
-    createModal();
+  if(pattern==='popup')
+    {
+  setTimeout(() => {                                   
+    initializeForm();                       
+    openModal();                  
+  }, 4000);
+  createModal(); 
+}
+if(pattern==='button-modal')
+  {
+  createFormButton();
+  createModal(); 
   }
-  
-  if (pattern === 'button-modal') {
-    createFormButton();
-    createModal();
-  }
-  
-  if (pattern === 'basic') {
-    BasicinitializeForm();
-  }
-  
-  renderFormInContainer();
-  
+  if(pattern==='basic')
+    {
+  BasicinitializeForm();
+    }
   console.log('DOMContentLoaded event fired');
 });
-
+ 
 function createModal() {
   const modalOverlay = document.createElement('div');
   modalOverlay.id = 'modalOverlay';
   modalOverlay.classList.add('modal-overlay');
-  modalOverlay.style.display = 'none';
+  modalOverlay.style.display = 'none'; 
 
-  const modalContent = document.createElement('div');
+  const modalContent = document.createElement('div'); 
   modalContent.id = 'modalContent';
   modalContent.classList.add('modal-content');
 
@@ -377,16 +374,26 @@ function closeModal() {
 function initializeForm() {
   console.log('initializeForm called');
   const modalContent = document.getElementById('modalContent');
+
+  
   modalContent.innerHTML = '';
 
+  // Close button
   const closeButton = document.createElement('span');
   closeButton.id = 'closeButton';
   closeButton.classList.add('close-button');
   closeButton.innerHTML = '&times;';
   closeButton.addEventListener('click', closeModal);
+
   modalContent.appendChild(closeButton);
 
   const scriptElement = document.querySelector('script[src="https://suhanigupta03.github.io/lms-final/Form.js"]');
+
+  if (!scriptElement) {
+    console.error('Script element with src="https://suhanigupta03.github.io/lms-final/Form.js" not found.');
+    return;
+  }
+
   const path = scriptElement.getAttribute('path');
   const courses = scriptElement.getAttribute('courses');
   const styles = scriptElement.getAttribute('styles');
@@ -395,8 +402,19 @@ function initializeForm() {
   const customStylesheets = scriptElement.getAttribute('customStylesheets');
 
   if (styles) {
-    applyStyles(styles);
-  }
+          const customStylesheet = document.querySelectorAll('link[rel="stylesheet"]');
+          if (customStylesheet > 0) {
+              const styleLink = document.createElement('link');
+              styleLink.rel = 'stylesheet';
+              styleLink.href = "https://suhanigupta03.github.io/lms-final/testStyle.css";
+              document.head.prepend(styleLink);
+          } else {
+              const styleLink = document.createElement('link');
+              styleLink.rel = 'stylesheet';
+              styleLink.href = "https://suhanigupta03.github.io/lms-final/style.css";
+              document.head.prepend(styleLink);
+          }
+      }
 
   if (!path || !courses) {
     console.error('Custom data attribute not found in script element.');
@@ -408,10 +426,10 @@ function initializeForm() {
 
   try {
     if (JSON.parse(path).includes(currentPath)) {
-      console.log('Path matches, creating form');
+      console.log('Path matches, creating form'); 
       createForm(courses, styles, logo, contact);
       toggleFormStyle(styles);
-      openModal();
+      openModal(); 
     } else {
       console.log('Path does not match');
     }
@@ -435,18 +453,17 @@ function createForm(courseOptions, styles, logo, contact) {
   const formContainer = document.createElement('div');
   formContainer.id = 'formContainer';
   formContainer.classList.add('form-container');
-  document.getElementById('modalContent').appendChild(formContainer);
-
+  document.getElementById('modalContent').appendChild(formContainer); 
   const header = document.createElement('div');
   header.classList.add('formWrapper');
   formContainer.insertBefore(header, formContainer.firstChild);
-
   const logoAndContactContainer = document.createElement('div');
   logoAndContactContainer.classList.add('logo-contact-container');
   header.appendChild(logoAndContactContainer);
 
   const logoElement = document.createElement('img');
   logoElement.src = logo || 'https://suhanigupta03.github.io/lms-final/Careerkick.png';
+  console.log("careerkick logo");
   logoElement.alt = 'Company Logo';
   logoElement.classList.add('logo-style');
   logoAndContactContainer.appendChild(logoElement);
@@ -481,9 +498,9 @@ function createForm(courseOptions, styles, logo, contact) {
   courseSelectWrapper.className = 'form-group full-width';
   form.appendChild(courseSelectWrapper);
 
-  createSelectField(courseSelectWrapper, 'Course Selection', 'courseSelection', 'courseSelection', courseOptions);
+  createSelectField(courseSelectWrapper, '', 'courseSelection', 'courseSelection', courseOptions);
 
-  if (window.location.hostname === 'https://suhanigupta03.github.io/lms-final/') {
+  if (window.location.hostname === 'abhigyadufare.github.io') {
     createField(form, { placeholder: 'Preferred College:', inputType: 'text', inputId: 'preferredCollege', inputName: 'preferredCollege', required: true });
   }
 
@@ -571,51 +588,129 @@ function createCheckboxField(form, label, inputId) {
 }
 
 function getUrlParameter(name) {
-  const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-  const results = regex.exec(window.location.href);
-  if (!results || !results[2]) {
-    return null;
-  }
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
 }
 
-const paramValue = getUrlParameter(scriptElement.getAttribute('path'));
-
-function applyStyles(styles) {
-  const linkElement = document.createElement('link');
-  linkElement.rel = 'stylesheet';
-  linkElement.type = 'text/css';
-  linkElement.href = 'https://suhanigupta03.github.io/lms-final/' + styles;
-  document.head.appendChild(linkElement);
-}
+const utmData = {
+  source: getUrlParameter('utm_source'),
+  sourceId: getUrlParameter('campaign_id')
+};
 
 function submitForm(event) {
   event.preventDefault();
-  console.log('Form submitted');
+  const courseSelection = document.getElementById('courseSelection').value;
 
-  const form = document.getElementById('studentDetailsForm');
-  const formData = new FormData(form);
+  // Check if the selected course is the default "Courses" option
+  if (courseSelection === 'Courses') {
+    alert('Please select a course.');
+    return;
+  }
+  const formData = {
+    studentName: document.getElementById('studentName').value,
+    contactNo: document.getElementById('contactNo').value,
+    email: document.getElementById('email').value,
+    whatsappNo: document.getElementById('whatsappNo').value,
+    fatherName: document.getElementById('fatherName').value,
+    city: document.getElementById('city').value,
+    state: document.getElementById('state').value,
+    courseSelection: courseSelection,
+    neetScore: document.getElementById('neetScore').value,
+    neetAir: document.getElementById('neetAir').value
 
-  fetch('https://api.example.com/submit', {
-    method: 'POST',
-    body: formData,
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-      closeModal();
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+  };
+  if (window.location.hostname === 'abhigyadufare.github.io') {
+    const preferredCollegeElement = document.getElementById('preferredCollege');
+    if (preferredCollegeElement && preferredCollegeElement.required && preferredCollegeElement.value.trim()) {
+      formData.preferredCollege = preferredCollegeElement.value;
+    } else {
+      alert('Preferred College field is required.');
+      return;
+    }
+  }
+  
+
+  console.log('Form submitted:', formData);
+  closeModal();
 }
 
 function BasicinitializeForm() {
-  console.log('BasicinitializeForm called');
+  console.log('initializeForm called');
+
+  const scriptElement = document.querySelector('script[src="https://suhanigupta03.github.io/lms-final/Form.js"]');
+
+  if (!scriptElement) {
+    console.error('Script element with src="https://suhanigupta03.github.io/lms-final/Form.js" not found.');
+    return;
+  }
+
+  const path = scriptElement.getAttribute('path');
+  const courses = scriptElement.getAttribute('courses');
+  const styles = scriptElement.getAttribute('styles');
+  const logo = scriptElement.getAttribute('logo');
+  const contact = scriptElement.getAttribute('contact');
+  const customStylesheets = scriptElement.getAttribute('customStylesheets');
+  if (styles) {
+          const customStylesheet = document.querySelectorAll('link[rel="stylesheet"]');
+          if (customStylesheet > 0) {
+              const styleLink = document.createElement('link');
+              styleLink.rel = 'stylesheet';
+              styleLink.href = "https://suhanigupta03.github.io/lms-final/testStyle.css";
+              document.head.prepend(styleLink);
+          } else {
+              const styleLink = document.createElement('link');
+              styleLink.rel = 'stylesheet';
+              styleLink.href = "https://suhanigupta03.github.io/lms-final/style.css";
+              document.head.prepend(styleLink);
+          }
+      }
+
+  if (!path || !courses) {
+    console.error('Custom data attribute not found in script element.');
+    return;
+  }
+
+  const currentPath = window.location.pathname;
+  console.log('Current path:', currentPath);
+
+  try {
+    if (JSON.parse(path).includes(currentPath)) {
+      console.log('Path matches, creating form'); 
+      BasiccreateForm(courses, styles, logo, contact);
+      toggleFormStyle(styles);
+    } else {
+      console.log('Path does not match');
+    }
+  } catch (e) {
+    console.error('Error parsing path attribute:', e);
+  }
+}
+
+function BasiccreateForm(courseOptions, styles, logo, contact) {
   const formContainer = document.createElement('div');
   formContainer.id = 'formContainer';
   formContainer.classList.add('form-container');
-  document.body.appendChild(formContainer);
+  document.body.appendChild(formContainer); 
+  
+  const header = document.createElement('div');
+  header.classList.add('formWrapper');
+  formContainer.appendChild(header); 
+  
+  const logoAndContactContainer = document.createElement('div');
+  logoAndContactContainer.classList.add('logo-contact-container');
+  header.appendChild(logoAndContactContainer);
+
+  const logoElement = document.createElement('img');
+  logoElement.src = logo || 'https://suhanigupta03.github.io/lms-final/Careerkick.png';
+  console.log("careerkick logo");
+  logoElement.alt = 'Company Logo';
+  logoElement.classList.add('logo-style');
+  logoAndContactContainer.appendChild(logoElement);
+
+  const contactElement = document.createElement('div');
+  contactElement.textContent = 'Contact us: ' + contact;
+  contactElement.classList.add('contact-style');
+  logoAndContactContainer.appendChild(contactElement);
 
   const form = document.createElement('form');
   form.id = 'studentDetailsForm';
@@ -642,7 +737,7 @@ function BasicinitializeForm() {
   courseSelectWrapper.className = 'form-group full-width';
   form.appendChild(courseSelectWrapper);
 
-  createSelectField(courseSelectWrapper, 'Course Selection', 'courseSelection', 'courseSelection', scriptElement.getAttribute('courses'));
+  createSelectField(courseSelectWrapper, '', 'courseSelection', 'courseSelection', courseOptions);
 
   if (window.location.hostname === 'abhigyadufare.github.io') {
     createField(form, { placeholder: 'Preferred College:', inputType: 'text', inputId: 'preferredCollege', inputName: 'preferredCollege', required: true });
@@ -661,15 +756,4 @@ function BasicinitializeForm() {
   form.appendChild(submitButton);
 
   form.addEventListener('submit', submitForm);
-}
-
-function renderFormInContainer() {
-  const formContainer = document.getElementById('form_container_NT');
-  if (formContainer) {
-    console.log('form_container_NT found, rendering form inside it');
-    BasicinitializeForm();
-    formContainer.appendChild(document.getElementById('formContainer'));
-  } else {
-    console.log('form_container_NT not found, form will not be rendered inside it');
-  }
 }
