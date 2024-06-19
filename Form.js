@@ -1131,12 +1131,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (pattern === 'button-modal') {
-    createFormButton();
-    createModal();
+    const formContainerNT = document.getElementById('form_container_NT');
+    if (formContainerNT) {
+      createFormButton();
+      createModal(); 
+    } 
   }
 
   if (pattern === 'basic') {
-    BasicinitializeForm();
+    const formContainerNT = document.getElementById('form_container_NT');
+    if (formContainerNT) {
+      BasicinitializeForm();
+    } 
   }
 
   console.log('DOMContentLoaded event fired');
