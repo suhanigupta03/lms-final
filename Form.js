@@ -766,13 +766,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const scriptElement = document.querySelector('script[src="https://suhanigupta03.github.io/lms-final/Form.js"]');
   const pattern = scriptElement.getAttribute('pattern');
   
-  const formContainerDiv = document.getElementById('form_container_NT');
+  const path = scriptElement.getAttribute('path');
   
+  let formContainerDiv = null;
+
+  try {
+    const divIdMatch = path.match(/#(form_container_NT)/);
+    if (divIdMatch) {
+      const divId = divIdMatch[1];
+      formContainerDiv = document.getElementById(divId);
+    }
+  } catch (error) {
+    console.error('Error finding div with id="form_container_NT":', error);
+    return;
+  }
+
   if (!formContainerDiv) {
     console.error('Div with id="form_container_NT" not found. Form will not be rendered.');
     return;
   }
-
   if (pattern === 'popup') {
     setTimeout(() => {
       if (initializeForm(formContainerDiv)) {
@@ -816,13 +828,13 @@ function createModal(formContainerDiv) {
   formContainerDiv.appendChild(modalOverlay); // Append to the specific div
 }
 
-function openModal() {
-  const modalOverlay = document.getElementById('modalOverlay');
+function openModal(formContainerDiv) {
+  const modalOverlay = formContainerDiv.querySelector('#modalOverlay');
   modalOverlay.style.display = 'flex';
 }
 
-function closeModal() {
-  const modalOverlay = document.getElementById('modalOverlay');
+function closeModal(formContainerDiv) {
+  const modalOverlay = formContainerDiv.querySelector('#modalOverlay');
   modalOverlay.style.display = 'none';
 }
 
