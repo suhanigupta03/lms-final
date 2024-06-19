@@ -770,14 +770,12 @@ document.addEventListener('DOMContentLoaded', () => {
   
   let formContainerDiv = null;
 
-  try {
-    const divIdMatch = path.match(/#(form_container_NT)/);
-    if (divIdMatch) {
-      const divId = divIdMatch[1];
-      formContainerDiv = document.getElementById(divId);
-    }
-  } catch (error) {
-    console.error('Error finding div with id="form_container_NT":', error);
+  // Check if path contains the div id="form_container_NT"
+  if (path.includes('#form_container_NT')) {
+    const divId = 'form_container_NT';
+    formContainerDiv = document.getElementById(divId);
+  } else {
+    console.error('Div with id="form_container_NT" not found in the path attribute.');
     return;
   }
 
