@@ -1265,22 +1265,25 @@ function createFormButton() {
   document.body.appendChild(button);
 }
 
-function createForm(courseOptions, styles, logo, contact, targetContainer = null) {
+function createForm(courseOptions, styles, logo, contact) {
   if (!checkFormContainer()) return;
+
+  const modalContent = document.getElementById('modalContent');
+  if (!modalContent) {
+    console.error('Modal content element not found.');
+    return;
+  }
+
+  modalContent.innerHTML = ''; // Clear previous content
 
   const formContainer = document.createElement('div');
   formContainer.id = 'formContainer';
   formContainer.classList.add('form-container');
-
-  if (targetContainer) {
-    targetContainer.appendChild(formContainer);
-  } else {
-    document.getElementById('modalContent').appendChild(formContainer);
-  }
+  modalContent.appendChild(formContainer);
 
   const header = document.createElement('div');
   header.classList.add('formWrapper');
-  formContainer.insertBefore(header, formContainer.firstChild);
+  formContainer.appendChild(header);
 
   const logoAndContactContainer = document.createElement('div');
   logoAndContactContainer.classList.add('logo-contact-container');
