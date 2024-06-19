@@ -1154,24 +1154,27 @@ function checkFormContainer() {
 function createModal() {
   if (!checkFormContainer()) return;
 
-  const modalOverlay = document.createElement('div');
-  modalOverlay.id = 'modalOverlay';
-  modalOverlay.classList.add('modal-overlay');
-  modalOverlay.style.display = 'none';
+  let modalOverlay = document.getElementById('modalOverlay');
+  if (!modalOverlay) {
+    modalOverlay = document.createElement('div');
+    modalOverlay.id = 'modalOverlay';
+    modalOverlay.classList.add('modal-overlay');
+    modalOverlay.style.display = 'none';
 
-  const modalContent = document.createElement('div');
-  modalContent.id = 'modalContent';
-  modalContent.classList.add('modal-content');
+    const modalContent = document.createElement('div');
+    modalContent.id = 'modalContent';
+    modalContent.classList.add('modal-content');
 
-  const closeButton = document.createElement('span');
-  closeButton.id = 'closeButton';
-  closeButton.classList.add('close-button');
-  closeButton.innerHTML = '&times;';
-  closeButton.addEventListener('click', closeModal);
+    const closeButton = document.createElement('span');
+    closeButton.id = 'closeButton';
+    closeButton.classList.add('close-button');
+    closeButton.innerHTML = '&times;';
+    closeButton.addEventListener('click', closeModal);
 
-  modalContent.appendChild(closeButton);
-  modalOverlay.appendChild(modalContent);
-  document.body.appendChild(modalOverlay);
+    modalContent.appendChild(closeButton);
+    modalOverlay.appendChild(modalContent);
+    document.body.appendChild(modalOverlay);
+  }
 }
 
 function openModal() {
