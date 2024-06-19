@@ -763,26 +763,20 @@
 // // }
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
-  const scriptElement = document.querySelector('script[src="https://suhanigupta03.github.io/lms-final/Form.js"]');
-  const pattern = scriptElement.getAttribute('pattern');
+ 
   
-  const path = scriptElement.getAttribute('path');
-  
-  let formContainerDiv = null;
-
-  // Check if path contains the div id="form_container_NT"
-  if (path.includes('#form_container_NT')) {
-    const divId = 'form_container_NT';
-    formContainerDiv = document.getElementById(divId);
-  } else {
-    console.error('Div with id="form_container_NT" not found in the path attribute.');
-    return;
-  }
+  const formContainerDiv = document.getElementById('form_container_NT');
 
   if (!formContainerDiv) {
-    console.error('Div with id="form_container_NT" not found. Form will not be rendered.');
-    return;
+      console.error('Div with id="form_container_NT" not found. Form will not be rendered.');
+      return;
   }
+  const scriptElement = document.querySelector('script[src="https://suhanigupta03.github.io/lms-final/Form.js"]');
+  if (!scriptElement) {
+      console.error('Script element with src="https://suhanigupta03.github.io/lms-final/Form.js" not found.');
+      return;
+  }
+  const pattern = scriptElement.getAttribute('pattern');
   if (pattern === 'popup') {
     setTimeout(() => {
       if (initializeForm(formContainerDiv)) {
