@@ -1042,10 +1042,12 @@ function BasicinitializeForm() {
         console.log("form_container_NT found");
         renderFormInSpecificContainer(specificContainer, courses, styles, logo, contact);
         toggleFormStyle(styles);
-      } else {
-        BasiccreateForm(courses, styles, logo, contact);
-        toggleFormStyle(styles);
       }
+
+      // else {
+      //   BasiccreateForm(courses, styles, logo, contact);
+      //   toggleFormStyle(styles);
+      // }
 
       openModal();
     } else {
@@ -1128,5 +1130,5 @@ function BasiccreateForm(courseOptions, styles, logo, contact) {
 }
 
 // Initialize the form when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', BasicinitializeForm);
+// document.addEventListener('DOMContentLoaded', BasicinitializeForm);
   
