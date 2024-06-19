@@ -1122,11 +1122,12 @@ document.addEventListener('DOMContentLoaded', () => {
   
   if (pattern === 'popup') {
     setTimeout(() => {
+      createModal();
       if (initializeForm()) {
         openModal();
       }
     }, 4000);
-    createModal();
+    
   }
 
   if (pattern === 'button-modal') {
