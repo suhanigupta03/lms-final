@@ -764,18 +764,19 @@
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
  
-  
-  const formContainerDiv = document.getElementById('form_container_NT');
-
-  if (!formContainerDiv) {
-      console.error('Div with id="form_container_NT" not found. Form will not be rendered.');
-      return;
-  }
   const scriptElement = document.querySelector('script[src="https://suhanigupta03.github.io/lms-final/Form.js"]');
   if (!scriptElement) {
       console.error('Script element with src="https://suhanigupta03.github.io/lms-final/Form.js" not found.');
       return;
   }
+
+   const formContainerDiv = document.querySelector('.form_container_NT');
+
+  if (!formContainerDiv) {
+      console.error('Div with id="form_container_NT" not found. Form will not be rendered.');
+      return;
+  }
+  
   const pattern = scriptElement.getAttribute('pattern');
   if (pattern === 'popup') {
     setTimeout(() => {
@@ -812,12 +813,12 @@ function createModal(formContainerDiv) {
   closeButton.id = 'closeButton';
   closeButton.classList.add('close-button');
   closeButton.innerHTML = '&times;';
-  closeButton.addEventListener('click', closeModal);
+  closeButton.addEventListener('click', () => closeModal(formContainerDiv));
 
   modalContent.appendChild(closeButton);
   modalOverlay.appendChild(modalContent);
 
-  formContainerDiv.appendChild(modalOverlay); // Append to the specific div
+  formContainerDiv.appendChild(modalOverlay); // Append modal to the specific div
 }
 
 function openModal(formContainerDiv) {
