@@ -1174,17 +1174,21 @@ function createModal() {
 }
 
 function openModal() {
-  if (!checkFormContainer()) return;
-
   const modalOverlay = document.getElementById('modalOverlay');
-  modalOverlay.style.display = 'flex';
+  if (modalOverlay) {
+    modalOverlay.style.display = 'flex';
+  } else {
+    console.error('Modal overlay element not found.');
+  }
 }
 
 function closeModal() {
-  if (!checkFormContainer()) return;
-
   const modalOverlay = document.getElementById('modalOverlay');
-  modalOverlay.style.display = 'none';
+  if (modalOverlay) {
+    modalOverlay.style.display = 'none';
+  } else {
+    console.error('Modal overlay element not found.');
+  }
 }
 
 function initializeForm() {
